@@ -1,0 +1,7 @@
+{
+  "id": "ssh_root_login",
+  "exempt_nodes": ["legacy-app-01", "legacy-app-02"],
+  "reason": "Pending application migration - JIRA TICKET-4521",
+  "approved_by": "security-team",
+  "review_date": "2026-12-01"
+}

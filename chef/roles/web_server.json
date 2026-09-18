@@ -1,0 +1,10 @@
+{
+  "name": "web_server",
+  "description": "Web server role — build cookbook first, then CIS Level 1 hardening",
+  "json_class": "Chef::Role",
+  "chef_type": "role",
+  "run_list": [
+    "recipe[serverbuild]",
+    "recipe[cis_level1]"
+  ]
+}

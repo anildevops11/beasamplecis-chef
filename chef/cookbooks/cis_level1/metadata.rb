@@ -1,0 +1,16 @@
+name 'cis_level1'
+maintainer 'DevOps / Security Team'
+maintainer_email 'anil442266@gmail.com'
+license 'Apache-2.0'
+description 'Applies CIS Benchmark Level 1 hardening controls to Linux and Windows nodes'
+version '1.0.0'
+chef_version '>= 16.0'
+
+supports 'ubuntu'
+supports 'centos'
+supports 'redhat'
+supports 'windows'
+
+depends 'windows', '~> 6.0'
+depends 'windows-security-policy', '~> 0.3'
+depends 'audit', '~> 8.0'

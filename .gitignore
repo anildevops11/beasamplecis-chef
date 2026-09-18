@@ -1,0 +1,18 @@
+# Chef
+.chef/*.pem
+.chef/knife.rb
+chef/cookbooks/*/Berksfile.lock
+.kitchen/
+.kitchen.local.yml
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+
+# OS / editor
+.DS_Store
+*.swp
+.vscode/

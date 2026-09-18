@@ -1,0 +1,15 @@
+[Unicode]
+Unicode=yes
+[System Access]
+MinimumPasswordAge = 1
+MaximumPasswordAge = 365
+MinimumPasswordLength = <%= @min_password_length %>
+PasswordComplexity = <%= @password_complexity %>
+PasswordHistorySize = 24
+LockoutBadCount = <%= @lockout_threshold %>
+ResetLockoutCount = <%= @lockout_duration %>
+LockoutDuration = <%= @lockout_duration %>
+ClearTextPassword = 0
+[Version]
+signature="$CHICAGO$"
+Revision=1

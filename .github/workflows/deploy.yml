@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  upload-cookbook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Chef credentials
+        run: |
+          mkdir -p ~/.chef
+          echo "${{ secrets.CHEF_KNIFE_RB }}" > ~/.chef/knife.rb
+          echo "${{ secrets.CHEF_CLIENT_PEM }}" > ~/.chef/client.pem
+
+      - name: Upload cookbook to Chef Server
+        working-directory: chef/cookbooks/cis_level1
+        run: |
+          berks install
+          berks upload
+          knife cookbook upload cis_level1
+
+  terraform-apply:
+    needs: upload-cookbook
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Terraform apply
+        working-directory: terraform/environments/production
+        run: |
+          terraform init
+          terraform apply -auto-approve
+        env:
+          TF_VAR_vsphere_password: ${{ secrets.VSPHERE_PASSWORD }}
+
+  compliance-check:
+    needs: terraform-apply
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run InSpec against fleet
+        run: |
+          inspec exec https://github.com/dev-sec/cis-dil-benchmark.git \
+            -t ssh://deploy@${{ secrets.FLEET_TARGET }} \
+            --reporter cli json:compliance-results.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: compliance-report
+          path: compliance-results.json

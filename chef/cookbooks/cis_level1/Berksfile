@@ -1,0 +1,7 @@
+source 'https://supermarket.chef.io'
+
+metadata
+
+cookbook 'windows'
+cookbook 'windows-security-policy'
+cookbook 'audit'

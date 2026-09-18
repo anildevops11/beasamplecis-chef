@@ -1,0 +1,11 @@
+name 'serverbuild'
+maintainer 'Platform Team'
+maintainer_email 'platform@example.com'
+license 'Apache-2.0'
+description 'Example placeholder for an EXISTING server-build cookbook — installs the base application stack. Kept as its own cookbook, separate from cis_level1, per the guide section 2.3.'
+version '2.1.0'
+chef_version '>= 16.0'
+
+supports 'ubuntu'
+supports 'centos'
+supports 'windows'

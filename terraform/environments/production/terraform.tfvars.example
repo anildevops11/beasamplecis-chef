@@ -1,0 +1,8 @@
+resource_pool_id = "resgroup-1234"
+datastore_id     = "datastore-5678"
+network_id       = "network-91011"
+template_uuid    = "421a2b3c-....."
+ssh_user         = "ansible"
+ssh_key_path     = "~/.ssh/id_ed25519"
+# vsphere_password should be supplied via TF_VAR_vsphere_password env var
+# or a secrets manager — never committed here.

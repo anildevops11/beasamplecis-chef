@@ -1,0 +1,18 @@
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-22.04
+  - name: centos-9
+  - name: windows-2022
+
+suites:
+  - name: default
+    run_list:
+      - recipe[cis_level1::default]
+    attributes:
+      cis:
+        level: 1
